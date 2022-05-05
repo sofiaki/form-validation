@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form Validation</title>
+    <link rel="stylesheet" href="./index.css" />
+    <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
+  </head>
+  <body>
+    <script>
+      function highFive() {
+        event.preventDefault();
+        console.log("high");
+        let container = document.createElement("div");
+        container.classList.add("container");
+        let img = document.createElement("img");
+        img.src = "./images/cat-high-five.gif";
+        let refresh = document.createElement("button");
+        refresh.classList.add("button");
+        refresh.innerHTML = `<span class="iconify" data-icon="charm:refresh"></span>`;
+        refresh.onclick = () => {
+          location.reload();
+        };
+        container.appendChild(refresh);
+        container.appendChild(img);
+        
+        document.body.appendChild(container);
+      }
+      function confirmPassword() {
+        let password = document.getElementById("password").value;
+        let confirmPassword = document.getElementById("passwordConfirm");
+        confirmPassword.setAttribute("pattern", password)
+  
+    }
+   
+    </script>
+    <h1 style="text-align: center">Form Validation</h1>
+    <div>
+      <form  onsubmit="highFive()">
+        <div>
+          <div>
+            <label for="email">Email:</label>
+          </div>
+          <div>
+            <input
+              type="text"
+              id="email"
+              name="email"
+              pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+            />
+            <div class="error">Invalid email</div>
+          </div>
+          <br /><br />
+        </div>
+        <div>
+          <div>
+            <label for="country">Country:</label>
+          </div>
+          <div>
+            <input type="text" id="country" name="country" />
+          </div>
+          <br /><br />
+        </div>
+        <div>
+          <div>
+            <label for="zipCode">Zip code:</label>
+          </div>
+          <div>
+            <input type="text" id="zipCode" name="zipCode" pattern="[0-9]+" />
+            <div class="error">Zip Code should contain only numbers</div>
+          </div>
+
+          <br /><br />
+        </div>
+        <div>
+          <div>
+            <label for="password">Password:</label>
+          </div>
+          <div>
+            <input type="text" id="password" name="password" onkeyup="confirmPassword()"/>
+          </div>
+          <br /><br />
+        </div>
+        <div>
+          <div>
+            <div>
+              <label for="passwordConfirm">Confirm Password:</label>
+            </div>
+            <div>
+              <input type="text" id="passwordConfirm" name="passwordConfirm" onkeyup="confirmPassword()"/>
+              <div class="error">Password mismatch</div>
+            </div>
+            <br /><br />
+          </div>
+        </div>
+        <input type="submit" value="Submit" />
+      </form>
+    </div>
+  </body>
+</html>
